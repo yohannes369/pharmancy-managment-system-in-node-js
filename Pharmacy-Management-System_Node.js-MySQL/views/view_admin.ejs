@@ -1,213 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/assets/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #45a049;
-        }
+<% include inc/view_header %>
+    <% include inc/view_topmenu %>
+        <% include inc/view_sidebar %>
 
-        body {
-            background: linear-gradient(135deg, #d4fc79, #96e6a1);
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
+            <div id="page-wrapper">
 
-        .neon-header {
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            animation: neonGlow 2s infinite alternate;
-        }
+                <div class="container-fluid">
 
-        .neon-header h1 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            text-shadow: 0 0 5px var(--primary-color),
-                         0 0 10px var(--primary-color),
-                         0 0 20px var(--primary-color);
-            letter-spacing: 4px;
-            font-family: 'Arial Black', sans-serif;
-        }
-
-        .login-container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 0 20px var(--primary-color);
-            transform-style: preserve-3d;
-            transition: all 0.5s ease;
-        }
-
-        .login-container:hover {
-            transform: rotateY(2deg) rotateX(2deg);
-        }
-
-        .form-control {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-bottom: 2px solid var(--primary-color);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px var(--primary-color);
-            border-bottom-color: var(--secondary-color);
-        }
-
-        .btn-login {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-login:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        .animated-footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
-            margin-top: 5rem;
-            border-top: 2px solid var(--primary-color);
-            position: relative;
-        }
-
-        .social-links a {
-            color: white;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        @keyframes neonGlow {
-            from {
-                text-shadow: 0 0 5px var(--primary-color),
-                            0 0 10px var(--primary-color),
-                            0 0 20px var(--primary-color);
-            }
-            to {
-                text-shadow: 0 0 10px var(--primary-color),
-                            0 0 20px var(--primary-color),
-                            0 0 30px var(--primary-color);
-            }
-        }
-
-        .particles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        .floating { 
-            animation-name: floating;
-            animation-duration: 3s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-        }
-
-        @keyframes floating {
-            0% { transform: translate(0,  0px); }
-            50%  { transform: translate(0, 15px); }
-            100%   { transform: translate(0, -0px); }
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-    </style>
-</head>
-<body>
-    <div class="particles">
-        <!-- Add your particle animation here or use JavaScript library -->
-    </div>
-
-    <header class="neon-header floating">
-        <h1 class="gradient-text">BONGA PHARMACY</h1>
-        <p class="text-light">Your Health, Our Priority</p>
-    </header>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="login-container p-4 animate__animated animate__zoomIn">
-                    <h3 class="text-center mb-4 gradient-text">Login Portal</h3>
-                    <form method="post">
-                        <div class="form-group">
-                            <label class="text-light">Username</label>
-                            <input type="text" class="form-control mb-3" name="username" required 
-                                   autocomplete="off" spellcheck="false">
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                               DASHBOARD
+                            </h1>
                         </div>
-                        <div class="form-group">
-                            <label class="text-light">Password</label>
-                            <input type="password" class="form-control mb-4" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-login btn-block btn-lg">
-                            ACCESS PORTAL <i class="fas fa-unlock-alt"></i>
-                        </button>
-                    </form>
-                    <% include inc/alert_msg.ejs %>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="animated-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 text-center mb-4">
-                    <h5 class="gradient-text">Contact Us</h5>
-                    <p class="mb-1"><i class="fas fa-phone"></i> +251 987 294 511</p>
-                    <p><i class="fas fa-envelope"></i> yohannesyenakal@gmail.com</p>
-                </div>
-                <div class="col-md-4 text-center mb-4">
-                    <h5 class="gradient-text">Location</h5>
-                    <p>Bonga University Front<br>South West Ethiopia</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <h5 class="gradient-text">Follow Us</h5>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="#"><i class="fab fa-telegram fa-2x"></i></a>
-                        <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
                     </div>
-                </div>
-            </div>
-            <div class="text-center mt-3">
-                <p class="text-light">&copy; 2023 Bonga Pharmacy House. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+                    <!-- /.row -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.form-control').on('focus', function() {
-                $(this).parent().addClass('animate__animated animate__pulse');
-            }).on('blur', function() {
-                $(this).parent().removeClass('animate__animated animate__pulse');
-            });
-        });
-    </script>
-</body>
-</html>
+                    <section>
+                        <ul class="dashborad-list">
+                            <li>
+                                <img src="/assets/images/cash.ico" alt="todaysell">
+                                <h3>Today Sell</h3>
+                                <p>&#8369; 
+                                    <% todaySell.forEach(function(item){ %>
+                                        <%= item.sells_count_today %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/today-sell.png" alt="totalsell">
+                                <h3>Total Sell</h3>
+                                <p>&#8369;
+                                    <% totalSell.forEach(function(item){ %>
+                                         <%= item.sells_count %> 
+                                    <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/user.ico" alt="user">
+                                <h3>Users</h3>
+                                <p>
+                                    <% totalUser.forEach(function(item){ %>
+                                        <%= item.users_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            
+                            <li>
+                                <img src="/assets/images/batch.png" alt="batch">
+                                <h3>Batch Products</h3>
+                                <p>
+                                    <% totalBatch.forEach(function(item){ %>
+                                        <%= item.batch_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/medicine.png" alt="medicine">
+                                <h3>Total Medicines</h3>
+                                <p>
+                                    <% totalMedicine.forEach(function(item){ %>
+                                        <%= item.med_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/supplier.png" alt="supplier">
+                                <h3>Total Suppliers</h3>
+                                <p>
+                                    <% totalSupplier.forEach(function(item){ %>
+                                        <%= item.sup_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/category.png" alt="category">
+                                <h3>Total Categories</h3>
+                                <p>
+                                    <% totalCategory.forEach(function(item){ %>
+                                        <%= item.cat_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/generic.png" alt="generic">
+                                <h3>Generic Items</h3>
+                                <p>
+                                    <% totalGeneric.forEach(function(item){ %>
+                                        <%= item.generic_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                            <li>
+                                <img src="/assets/images/manufacture.png" alt="manfacturer">
+                                <h3>Manufacturers</h3>
+                                <p>
+                                    <% totalManufac.forEach(function(item){ %>
+                                        <%= item.manufac_count %> 
+                                   <% }) %>
+                                </p>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+
+            <% include inc/view_footer %>
