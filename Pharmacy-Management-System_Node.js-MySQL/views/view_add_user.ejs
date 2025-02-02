@@ -1,87 +1,196 @@
 <% include inc/view_header %>
 <% include inc/view_topmenu %>
 <% include inc/view_sidebar %>
-<div id="page-wrapper">
+
+<div id="page-wrapper" class="animate__animated animate__fadeIn">
 
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header text-center">
+                <h1 class="page-header text-center animate__animated animate__bounceInDown">
                     Add User
                 </h1>
             </div>
         </div>
-        <!-- /.row -->
 
         <div class="row">
-            <div class="col-lg-5 col-lg-offset-3">
-
-                <form action="" method="post">
-                    <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-3">
+                <form action="" method="post" class="animate__animated animate__zoomIn animate__delay-1s">
+                    <!-- Username -->
+                    <div class="form-group animate__animated animate__fadeInLeft">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required autofocus>
+                        <input type="text" class="form-control hover-scale" id="username" name="username" required autofocus>
                     </div>
-                    <div class="form-group">
+
+                    <!-- Email -->
+                    <div class="form-group animate__animated animate__fadeInRight animate__delay-1s">
                         <label for="user_email">Email</label>
-                        <input type="email" class="form-control" name="user_email" id="user_email" required>
+                        <input type="email" class="form-control hover-scale" name="user_email" id="user_email" required>
+                        <div class="email-feedback animated"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="user_gender">Gender &nbsp;&nbsp;</label>
-                        <label class="radio-inline"><input type="radio" name="user_gender" value="1" required>Male</label>
-                        <label class="radio-inline"><input type="radio" name="user_gender" value="0" required>Female</label>
+
+                    <!-- Gender -->
+                    <div class="form-group animate__animated animate__fadeInUp animate__delay-2s">
+                        <label for="user_gender">Gender</label>
+                        <div class="radio-group">
+                            <label class="radio-inline"><input type="radio" name="user_gender" value="1" required> Male</label>
+                            <label class="radio-inline"><input type="radio" name="user_gender" value="0" required> Female</label>
+                        </div>
                     </div>
-                    <div class="form-group">
+
+                    <!-- Date of Birth -->
+                    <div class="form-group animate__animated animate__flipInX animate__delay-2s">
                         <label for="user_dob">Date of Birth</label>
-                        <input type="text" class="form-control" name="user_dob" id="user_dob"  onkeydown="return false" required>
+                        <input type="text" class="form-control datepicker" name="user_dob" id="user_dob" required>
                     </div>
-                    <div class="form-group">
+
+                    <!-- Age -->
+                    <div class="form-group animate__animated animate__flipInX animate__delay-2s">
                         <label for="user_age">Age</label>
-                        <input type="number" class="form-control" name="user_age" id="user_age" required>
+                        <input type="number" class="form-control hover-scale" name="user_age" id="user_age" required>
                     </div>
-                    <div class="form-group">
+
+                    <!-- Contact -->
+                    <div class="form-group animate__animated animate__slideInLeft animate__delay-3s">
                         <label for="user_contact">Contact</label>
-                        <input type="text" class="form-control" name="user_contact" id="user_contact" required>
+                        <input type="text" class="form-control hover-scale" name="user_contact" id="user_contact" required>
                     </div>
-                    <div class="form-group">
+
+                    <!-- Blood Group -->
+                    <div class="form-group animate__animated animate__slideInRight animate__delay-3s">
                         <label for="blood_group">Blood Group</label>
-                        <select class="form-control" id="blood_group" name="blood_group" required> 
-                            <option value="" disabled selected hidden>Select Blood Group</option>
-                            <option>O+</option>
-                            <option>B+</option>
-                            <option>AB+</option>
-                            <option>A+</option>
+                        <select class="form-control hover-scale" id="blood_group" name="blood_group" required>
+                            <!-- options -->
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="marital_status">Marital Status &nbsp;&nbsp;</label>
-                        <label class="radio-inline"><input type="radio" name="marital_status" value="1" required>Married</label>
-                        <label class="radio-inline"><input type="radio" name="marital_status" value="0" required>Unmarried</label>
+
+                    <!-- Marital Status -->
+                    <div class="form-group animate__animated animate__fadeInUp animate__delay-4s">
+                        <label for="marital_status">Marital Status</label>
+                        <div class="radio-group">
+                            <label class="radio-inline"><input type="radio" name="marital_status" value="1" required> Married</label>
+                            <label class="radio-inline"><input type="radio" name="marital_status" value="0" required> Unmarried</label>
+                        </div>
                     </div>
-                    <div class="form-group">
+
+                    <!-- Password -->
+                    <div class="form-group animate__animated animate__zoomIn animate__delay-4s">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" required>
+                        <div class="input-group">
+                            <input type="password" class="form-control hover-scale" name="password" id="password" required>
+                            <span class="input-group-addon toggle-password">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="usertype">User Type &nbsp;&nbsp;</label>
-                        <select class="form-control" id="usertype" name="usertype" required>
+
+                    <!-- User Type -->
+                    <div class="form-group animate__animated animate__rotateIn animate__delay-5s">
+                        <label for="usertype">User Type</label>
+                        <select class="form-control hover-scale" id="usertype" name="usertype" required>
                             <option>Admin</option>
                             <option>User</option>
                         </select>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-block" name="submit" value="Add">
-                </form>
 
+                    <!-- Submit Button -->
+                    <input type="submit" class="btn btn-primary btn-block animate__animated animate__pulse animate__infinite" 
+                           name="submit" value="Add">
+                </form>
             </div>
         </div>
-        <!-- /.row -->
 
     </div>
-    <!-- /.container-fluid -->
-
 </div>
-<!-- /#page-wrapper -->
 
+<style>
+.hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.radio-group label {
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.radio-group label:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+.toggle-password {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #007bff;
+}
+
+.animated {
+    animation-duration: 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.input-error {
+    animation: shake 0.5s;
+    border-color: #dc3545 !important;
+}
+
+.input-valid {
+    border-color: #28a745 !important;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    // Datepicker initialization
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Password toggle
+    $('.toggle-password').click(function() {
+        const passwordField = $('#password');
+        const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+        passwordField.attr('type', type);
+        $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+    });
+
+    // Form validation animations
+    $('input, select').on('change', function() {
+        if(this.checkValidity()) {
+            $(this).addClass('input-valid').removeClass('input-error');
+        } else {
+            $(this).addClass('input-error').removeClass('input-valid');
+        }
+    });
+
+    // Hover effect for submit button
+    $('.btn-primary').hover(
+        function() {
+            $(this).css('transform', 'scale(1.05)');
+        },
+        function() {
+            $(this).css('transform', 'scale(1)');
+        }
+    );
+});
+</script>
 
 <% include inc/view_footer.ejs %>
