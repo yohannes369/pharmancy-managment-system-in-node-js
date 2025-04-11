@@ -11,102 +11,23 @@
         :root {
             --primary-color: #4CAF50;
             --secondary-color: #45a049;
+            --accent-color: #8BC34A;
+            --dark-bg: #0a0a0a;
+            --light-text: #f8f9fa;
+            --header-gradient: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            --text-gradient: linear-gradient(90deg, #4CAF50, #8BC34A, #CDDC39);
         }
 
         body {
-            background: #0a0a0a;
+            background: var(--dark-bg);
             overflow-x: hidden;
             min-height: 100vh;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .neon-header {
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            animation: neonGlow 2s infinite alternate;
-        }
-
-        .neon-header h1 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            text-shadow: 0 0 5px var(--primary-color),
-                         0 0 10px var(--primary-color),
-                         0 0 20px var(--primary-color);
-            letter-spacing: 4px;
-            font-family: 'Arial Black', sans-serif;
-        }
-
-        .login-container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 0 20px var(--primary-color);
-            transform-style: preserve-3d;
-            transition: all 0.5s ease;
-        }
-
-        .login-container:hover {
-            transform: rotateY(2deg) rotateX(2deg);
-        }
-
-        .form-control {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-bottom: 2px solid var(--primary-color);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px var(--primary-color);
-            border-bottom-color: var(--secondary-color);
-        }
-
-        .btn-login {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-login:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        .animated-footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
-            margin-top: 5rem;
-            border-top: 2px solid var(--primary-color);
-            position: relative;
-        }
-
-        .social-links a {
-            color: white;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        @keyframes neonGlow {
-            from {
-                text-shadow: 0 0 5px var(--primary-color),
-                            0 0 10px var(--primary-color),
-                            0 0 20px var(--primary-color);
-            }
-            to {
-                text-shadow: 0 0 10px var(--primary-color),
-                            0 0 20px var(--primary-color),
-                            0 0 30px var(--primary-color);
-            }
-        }
-
+        /* Particle Background */
         .particles {
             position: fixed;
             width: 100%;
@@ -114,98 +35,544 @@
             top: 0;
             left: 0;
             z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
         }
 
-        .floating { 
-            animation-name: floating;
-            animation-duration: 3s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
+        /* Header Styles */
+        .neon-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
-        @keyframes floating {
-            0% { transform: translate(0,  0px); }
-            50%  { transform: translate(0, 15px); }
-            100%   { transform: translate(0, -0px); }
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+        .neon-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: var(--header-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+            letter-spacing: 3px;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        .neon-header p {
+            color: var(--light-text);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        /* Login Container */
+        .login-container {
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2),
+                        0 0 0 1px rgba(76, 175, 80, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 0%,
+                transparent 45%,
+                rgba(76, 175, 80, 0.1) 50%,
+                transparent 55%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 5s infinite;
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.3),
+                        0 0 0 1px rgba(76, 175, 80, 0.2);
+        }
+
+        .login-container h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .login-container h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--text-gradient);
+            border-radius: 3px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            border-radius: 8px;
+            color: var(--light-text);
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5),
+                        inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            border-color: transparent;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Button Styles */
+        .btn-login {
+            background: var(--text-gradient);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+            margin-top: 1rem;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6);
+        }
+
+        .btn-login:active {
+            transform: translateY(1px);
+        }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .btn-login:hover::before {
+            left: 100%;
+        }
+
+        /* Footer Styles */
+        .animated-footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 3rem 0 2rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(76, 175, 80, 0.2);
+            position: relative;
+            clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .animated-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--text-gradient);
+            animation: rainbow 8s linear infinite;
+        }
+
+        .footer-content {
+            padding-top: 2rem;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h5 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h5::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .footer-section p, 
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            background: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(76, 175, 80, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .neon-header {
+                padding: 2rem 1rem;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+            
+            .login-container {
+                padding: 2rem 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .animated-footer {
+                clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="particles">
-        <!-- Add your particle animation here or use JavaScript library -->
-    </div>
+    <div class="particles" id="particles-js"></div>
 
-    <header class="neon-header floating">
-        <h1 class="gradient-text">BONGA PHARMACY</h1>
-        <p class="text-light">Your Health, Our Priority</p>
+    <header class="neon-header">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">BONGA PHARMACY</h1>
+            <p class="animate__animated animate__fadeIn animate__delay-1s">Advanced Pharmaceutical Management System</p>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="login-container p-4 animate__animated animate__zoomIn">
-                    <h3 class="text-center mb-4 gradient-text">Login Portal</h3>
-                    <form method="post">
-                        <div class="form-group">
-                            <label class="text-light">Username</label>
-                            <input type="text" class="form-control mb-3" name="username" required 
-                                   autocomplete="off" spellcheck="false">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-light">Password</label>
-                            <input type="password" class="form-control mb-4" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-login btn-block btn-lg">
-                            ACCESS PORTAL <i class="fas fa-unlock-alt"></i>
-                        </button>
-                    </form>
-                    <% include inc/alert_msg.ejs %>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="animated-footer">
+    <main class="main-content">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 text-center mb-4">
-                    <h5 class="gradient-text">Contact Us</h5>
-                    <p class="mb-1"><i class="fas fa-phone"></i> +251 987 294 511</p>
-                    <p><i class="fas fa-envelope"></i> yohannesyenakal@gmail.com</p>
-                </div>
-                <div class="col-md-4 text-center mb-4">
-                    <h5 class="gradient-text">Location</h5>
-                    <p>Bonga University Front<br>South West Ethiopia</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <h5 class="gradient-text">Follow Us</h5>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="#"><i class="fab fa-telegram fa-2x"></i></a>
-                        <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="login-container animate__animated animate__zoomIn">
+                        <h3 class="animate__animated animate__fadeIn animate__delay-1s">Secure Login</h3>
+                        <form method="post">
+                            <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" required 
+                                       autocomplete="off" spellcheck="false" placeholder="Enter your username">
+                            </div>
+                            <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" required 
+                                       placeholder="Enter your password">
+                            </div>
+                            <button type="submit" class="btn btn-login btn-block animate__animated animate__fadeIn animate__delay-2s">
+                                <i class="fas fa-sign-in-alt"></i> ACCESS SYSTEM
+                            </button>
+                        </form>
+                        <% include inc/alert_msg.ejs %>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-3">
-                <p class="text-light">&copy; 2023 Bonga Pharmacy House. All rights reserved.</p>
+        </div>
+    </main>
+
+    <footer class="animated-footer">
+        <div class="container">
+            <div class="row footer-content">
+                <div class="col-md-4 footer-section animate__animated animate__fadeIn animate__delay-2s">
+                    <h5><i class="fas fa-map-marker-alt"></i> Our Location</h5>
+                    <p>Bonga University Front<br>South West Ethiopia</p>
+                    <p><i class="fas fa-phone"></i> +251 987 294 511</p>
+                    <p><i class="fas fa-envelope"></i> pharmacy@bonga.com</p>
+                </div>
+                <div class="col-md-4 footer-section animate__animated animate__fadeIn animate__delay-2s">
+                    <h5><i class="fas fa-clock"></i> Working Hours</h5>
+                    <p>Monday - Friday: 8:00 AM - 8:00 PM</p>
+                    <p>Saturday: 9:00 AM - 6:00 PM</p>
+                    <p>Sunday: Emergency Only</p>
+                </div>
+                <div class="col-md-4 footer-section animate__animated animate__fadeIn animate__delay-2s">
+                    <h5><i class="fas fa-share-alt"></i> Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-3s"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-3s"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-3s"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="animate__animated animate__fadeIn animate__delay-3s"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright animate__animated animate__fadeIn animate__delay-3s">
+                <p>&copy; 2023 Bonga Pharmacy Management System. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Initialize particles.js
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#4CAF50"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#4CAF50",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+
+            // Form input animations
             $('.form-control').on('focus', function() {
                 $(this).parent().addClass('animate__animated animate__pulse');
             }).on('blur', function() {
                 $(this).parent().removeClass('animate__animated animate__pulse');
+            });
+
+            // Stagger animations for footer items
+            $('.footer-section').each(function(i) {
+                $(this).css('animation-delay', (i * 0.2) + 's');
+            });
+
+            $('.social-links a').each(function(i) {
+                $(this).css('animation-delay', (0.6 + i * 0.1) + 's');
             });
         });
     </script>
